@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>All QR Code Tools | QRZuno</title>
+<meta name="description" content="Browse every QR code generator on QRZuno — websites, Wi-Fi, WhatsApp, UPI, social media, apps, events and more. Search or filter by category.">
+<link rel="canonical" href="https://qrzuno.example.com/qr-tools.html">
+<meta property="og:title" content="All QR Code Tools | QRZuno">
+<meta property="og:description" content="Browse every QR code generator on QRZuno — websites, Wi-Fi, WhatsApp, UPI, social media, apps, events and more. Search or filter by category.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="QRZuno">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b0f1e">
+<link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./assets/icons/favicon.svg">
+<link rel="manifest" href="./manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/main.css">
+<link rel="stylesheet" href="./css/responsive.css">
+<link rel="stylesheet" href="./css/animations.css">
+
+</head>
+<body>
+<div class="qz-bg-scene" aria-hidden="true">
+  <div class="qz-blob qz-blob-1"></div>
+  <div class="qz-blob qz-blob-2"></div>
+  <div class="qz-blob qz-blob-3"></div>
+</div>
+<header class="qz-header">
+  <div class="qz-container qz-header-inner">
+    <a href="./index.html" class="qz-logo" aria-label="QRZuno home">
+      <img src="./assets/icons/favicon.svg" alt="" class="qz-logo-mark">
+      QRZuno
+    </a>
+    <nav class="qz-nav" aria-label="Primary">
+      <a href="./index.html">Home</a>
+      <a href="./tools/url.html">QR Generator</a>
+      <a href="./qr-tools.html">QR Tools</a>
+      <a href="./about.html">About</a>
+      <a href="./faq.html">FAQ</a>
+    </nav>
+    <div class="qz-header-actions">
+      <a href="./tools/url.html" class="qz-btn qz-btn-primary qz-btn-sm">Create QR</a>
+      <button class="qz-hamburger" aria-label="Open menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+<nav class="qz-mobile-menu" aria-label="Mobile">
+  <a href="./index.html">Home</a>
+  <a href="./tools/url.html">QR Generator</a>
+  <a href="./qr-tools.html">QR Tools</a>
+  <a href="./about.html">About</a>
+  <a href="./faq.html">FAQ</a>
+  <a href="./history.html">History</a>
+  <a href="./contact.html">Contact</a>
+</nav>
+
+<main id="main">
+  <section class="qz-section" style="padding-top:44px;">
+    <div class="qz-container">
+      <div class="qz-section-head">
+        <span class="qz-eyebrow">QR Tools</span>
+        <h1>Every QR Code Generator, In One Place</h1>
+        <p>Search by name or filter by category — every card links to a fully working generator.</p>
+      </div>
+      <div class="qz-search-bar">
+        <input type="search" id="qz-tool-search" placeholder="Search QR tools… e.g. Wi-Fi, UPI, vCard" aria-label="Search QR tools">
+      </div>
+      <div class="qz-chip-row" id="qz-cat-filter"></div>
+      <div class="qz-grid" id="qz-tools-grid"></div>
+      <p id="qz-no-results" class="qz-empty-block" hidden>No tools matched your search. Try a different term.</p>
+    </div>
+  </section>
+</main>
+<footer class="qz-footer">
+  <div class="qz-container qz-footer-grid">
+    <div>
+      <a href="./index.html" class="qz-logo"><img src="./assets/icons/favicon.svg" alt="" class="qz-logo-mark">QRZuno</a>
+      <p class="qz-tagline">Create. Customize. Scan.</p>
+    </div>
+    <div class="qz-footer-links">
+      <a href="./tools/url.html">QR Generator</a>
+      <a href="./qr-tools.html">QR Tools</a>
+      <a href="./about.html">About</a>
+      <a href="./faq.html">FAQ</a>
+      <a href="./privacy.html">Privacy</a>
+      <a href="./terms.html">Terms</a>
+      <a href="./contact.html">Contact</a>
+    </div>
+  </div>
+  <p class="qz-footer-bottom">© <span class="qz-year"></span> QRZuno. All rights reserved. No ads. No tracking. No login required.</p>
+</footer>
+<script src="./js/utils.js"></script>
+<script src="./js/history.js"></script>
+<script src="./js/favorites.js"></script>
+<script src="./js/download.js"></script>
+<script src="./js/tools-data.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const grid = document.getElementById("qz-tools-grid");
+  const catFilter = document.getElementById("qz-cat-filter");
+  const search = document.getElementById("qz-tool-search");
+  const noResults = document.getElementById("qz-no-results");
+
+  const dedicated = { url:1, text:1, wifi:1, whatsapp:1, email:1, phone:1, sms:1, vcard:1, location:1, upi:1 };
+  const categories = ["All", ...new Set(Object.values(QRZUNO_TOOLS).map(t => t.category))];
+  let activeCat = "All";
+
+  categories.forEach(cat => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "qz-chip" + (cat === "All" ? " active" : "");
+    b.textContent = cat;
+    b.addEventListener("click", () => {
+      activeCat = cat;
+      catFilter.querySelectorAll(".qz-chip").forEach(c => c.classList.remove("active"));
+      b.classList.add("active");
+      render();
+    });
+    catFilter.appendChild(b);
+  });
+
+  function href(key) { return dedicated[key] ? `tools/${key}.html` : `tools/generator.html?type=${key}`; }
+
+  function render() {
+    const q = search.value.trim().toLowerCase();
+    grid.innerHTML = "";
+    let count = 0;
+    Object.entries(QRZUNO_TOOLS).forEach(([key, t]) => {
+      if (activeCat !== "All" && t.category !== activeCat) return;
+      if (q && !t.label.toLowerCase().includes(q) && !t.category.toLowerCase().includes(q)) return;
+      count++;
+      const a = document.createElement("a");
+      a.href = href(key);
+      a.className = "qz-tool-card";
+      a.innerHTML = `<span class="qz-tool-icon">${t.icon}</span><h3>${t.label}</h3><p>${t.desc}</p><span class="qz-tool-cat">${t.category}</span>`;
+      grid.appendChild(a);
+    });
+    noResults.hidden = count > 0;
+  }
+
+  search.addEventListener("input", render);
+  render();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+/* QRZuno — animations.css */
+
+@keyframes qz-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.08); }
+  66% { transform: translate(-20px, 25px) scale(0.95); }
+}
+
+@keyframes qz-drift {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 0.5; }
+  90% { opacity: 0.4; }
+  100% { transform: translateY(-120px) translateX(20px); opacity: 0; }
+}
+
+@keyframes qz-fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.qz-animate-in { animation: qz-fade-up 0.6s ease both; }
+.qz-hero h1 { animation: qz-fade-up 0.7s ease both; }
+.qz-hero p.qz-lead { animation: qz-fade-up 0.7s ease 0.08s both; }
+.qz-hero-actions { animation: qz-fade-up 0.7s ease 0.16s both; }
+.qz-hero-visual { animation: qz-fade-up 0.8s ease 0.2s both; }
+
+.qz-tool-card { animation: qz-fade-up 0.5s ease both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .qz-blob, .qz-particle, .qz-animate-in, .qz-hero h1, .qz-hero p.qz-lead,
+  .qz-hero-actions, .qz-hero-visual, .qz-tool-card {
+    animation: none !important;
+  }
+  * { scroll-behavior: auto !important; }
+}

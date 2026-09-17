@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://qrzuno.example.com/index.html</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://qrzuno.example.com/qr-tools.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://qrzuno.example.com/history.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://qrzuno.example.com/about.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://qrzuno.example.com/privacy.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://qrzuno.example.com/terms.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://qrzuno.example.com/faq.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://qrzuno.example.com/contact.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://qrzuno.example.com/tools/url.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://qrzuno.example.com/tools/text.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://qrzuno.example.com/tools/wifi.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://qrzuno.example.com/tools/whatsapp.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://qrzuno.example.com/tools/email.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://qrzuno.example.com/tools/phone.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://qrzuno.example.com/tools/sms.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://qrzuno.example.com/tools/vcard.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://qrzuno.example.com/tools/location.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://qrzuno.example.com/tools/upi.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://qrzuno.example.com/tools/generator.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+</urlset>

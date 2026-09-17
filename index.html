@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>QRZuno — Create, Customize & Scan QR Codes Free | No Ads, No Login</title>
+<meta name="description" content="QRZuno is a free, ad-free QR code generator. Create URL, Wi-Fi, WhatsApp, UPI, vCard and more — customize colors, logos and frames, then download instantly. 100% client-side.">
+<link rel="canonical" href="https://qrzuno.example.com/index.html">
+<meta property="og:title" content="QRZuno — Create, Customize & Scan QR Codes Free | No Ads, No Login">
+<meta property="og:description" content="QRZuno is a free, ad-free QR code generator. Create URL, Wi-Fi, WhatsApp, UPI, vCard and more — customize colors, logos and frames, then download instantly. 100% client-side.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="QRZuno">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b0f1e">
+<link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./assets/icons/favicon.svg">
+<link rel="manifest" href="./manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/main.css">
+<link rel="stylesheet" href="./css/responsive.css">
+<link rel="stylesheet" href="./css/animations.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"QRZuno",
+"applicationCategory":"UtilitiesApplication","operatingSystem":"Any",
+"description":"Free, ad-free QR code generator with customization, logos, frames and offline PWA support.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<div class="qz-bg-scene" aria-hidden="true">
+  <div class="qz-blob qz-blob-1"></div>
+  <div class="qz-blob qz-blob-2"></div>
+  <div class="qz-blob qz-blob-3"></div>
+</div>
+<header class="qz-header">
+  <div class="qz-container qz-header-inner">
+    <a href="./index.html" class="qz-logo" aria-label="QRZuno home">
+      <img src="./assets/icons/favicon.svg" alt="" class="qz-logo-mark">
+      QRZuno
+    </a>
+    <nav class="qz-nav" aria-label="Primary">
+      <a href="./index.html">Home</a>
+      <a href="./tools/url.html">QR Generator</a>
+      <a href="./qr-tools.html">QR Tools</a>
+      <a href="./about.html">About</a>
+      <a href="./faq.html">FAQ</a>
+    </nav>
+    <div class="qz-header-actions">
+      <a href="./tools/url.html" class="qz-btn qz-btn-primary qz-btn-sm">Create QR</a>
+      <button class="qz-hamburger" aria-label="Open menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+<nav class="qz-mobile-menu" aria-label="Mobile">
+  <a href="./index.html">Home</a>
+  <a href="./tools/url.html">QR Generator</a>
+  <a href="./qr-tools.html">QR Tools</a>
+  <a href="./about.html">About</a>
+  <a href="./faq.html">FAQ</a>
+  <a href="./history.html">History</a>
+  <a href="./contact.html">Contact</a>
+</nav>
+
+<main id="main">
+  <section class="qz-hero">
+    <div class="qz-container qz-hero-grid">
+      <div>
+        <span class="qz-eyebrow">Free · Ad-free · No login</span>
+        <h1>Create QR Codes in Seconds</h1>
+        <p class="qz-lead">Generate, customize and download beautiful QR codes instantly with QRZuno — completely free, completely ad-free, and 100% client-side.</p>
+        <div class="qz-hero-actions">
+          <a href="tools/url.html" class="qz-btn qz-btn-primary">Create QR Code</a>
+          <a href="qr-tools.html" class="qz-btn qz-btn-secondary">Explore QR Tools</a>
+        </div>
+      </div>
+      <div class="qz-hero-visual">
+        <div class="qz-card qz-glass" style="width:280px;text-align:center;">
+          <div id="qz-hero-canvas-wrap" style="background:#fff;border-radius:14px;padding:16px;">
+            <canvas id="qz-hero-canvas" width="220" height="220" style="width:100%;height:auto;display:block;"></canvas>
+          </div>
+          <p style="margin-top:14px;font-size:0.85rem;">Live preview — try the quick generator below</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="qz-section" id="quick-generator">
+    <div class="qz-container">
+      <div class="qz-section-head">
+        <span class="qz-eyebrow">Quick Generator</span>
+        <h2>Pick a type, fill it in, download</h2>
+        <p>No account, no waiting — your QR code updates as you type.</p>
+      </div>
+      <div class="qz-chip-row" id="qz-quick-types" role="tablist" aria-label="Quick QR type">
+        <button type="button" class="qz-chip qz-quick-type" data-type="url">URL</button>
+<button type="button" class="qz-chip qz-quick-type" data-type="text">TEXT</button>
+<button type="button" class="qz-chip qz-quick-type" data-type="wifi">WIFI</button>
+<button type="button" class="qz-chip qz-quick-type" data-type="whatsapp">Whatsapp</button>
+<button type="button" class="qz-chip qz-quick-type" data-type="email">Email</button>
+<button type="button" class="qz-chip qz-quick-type" data-type="phone">Phone</button>
+<button type="button" class="qz-chip qz-quick-type" data-type="sms">SMS</button>
+<button type="button" class="qz-chip qz-quick-type" data-type="upi">UPI</button>
+      </div>
+      <div id="qz-quick-gen"></div>
+    </div>
+  </section>
+
+  <section class="qz-section">
+    <div class="qz-container">
+      <div class="qz-section-head">
+        <span class="qz-eyebrow">Popular Tools</span>
+        <h2>Ready-made generators for what you need most</h2>
+      </div>
+      <div class="qz-grid">
+      <a href="tools/url.html" class="qz-tool-card qz-animate-in">
+        <span class="qz-tool-icon">🔗</span>
+        <h3>Website QR</h3>
+        <p>Turn any link into a scannable QR code.</p>
+      </a>
+
+      <a href="tools/wifi.html" class="qz-tool-card qz-animate-in">
+        <span class="qz-tool-icon">📶</span>
+        <h3>Wi-Fi QR</h3>
+        <p>Let guests join your network with one scan.</p>
+      </a>
+
+      <a href="tools/whatsapp.html" class="qz-tool-card qz-animate-in">
+        <span class="qz-tool-icon">💬</span>
+        <h3>WhatsApp QR</h3>
+        <p>Open a chat instantly, message pre-filled.</p>
+      </a>
+
+      <a href="tools/upi.html" class="qz-tool-card qz-animate-in">
+        <span class="qz-tool-icon">💸</span>
+        <h3>UPI QR</h3>
+        <p>Generate a UPI payment request payload.</p>
+      </a>
+
+      <a href="tools/vcard.html" class="qz-tool-card qz-animate-in">
+        <span class="qz-tool-icon">🪪</span>
+        <h3>vCard QR</h3>
+        <p>Share your full contact card in a scan.</p>
+      </a>
+
+      <a href="tools/instagram.html" class="qz-tool-card qz-animate-in">
+        <span class="qz-tool-icon">📷</span>
+        <h3>Instagram QR</h3>
+        <p>Link straight to your Instagram profile.</p>
+      </a>
+
+      <a href="tools/youtube.html" class="qz-tool-card qz-animate-in">
+        <span class="qz-tool-icon">▶️</span>
+        <h3>YouTube QR</h3>
+        <p>Send scans straight to your video or channel.</p>
+      </a>
+
+      <a href="tools/location.html" class="qz-tool-card qz-animate-in">
+        <span class="qz-tool-icon">📍</span>
+        <h3>Location QR</h3>
+        <p>Drop a pin people can scan their way to.</p>
+      </a>
+      </div>
+      <p style="text-align:center;margin-top:26px;"><a href="qr-tools.html" class="qz-btn qz-btn-outline">See all QR tools →</a></p>
+    </div>
+  </section>
+
+  <section class="qz-section">
+    <div class="qz-container qz-prose" style="max-width:760px;margin:0 auto;text-align:center;">
+      <span class="qz-eyebrow">Why QRZuno</span>
+      <h2>Built to be fast, private and genuinely free</h2>
+      <p>Basic QR generation happens directly in your browser — your data isn't sent to a server just to make a QR code. QRZuno carries no advertising, no AdSense, and needs no account to create or download a code. Customize colors, patterns, logos and frames, then export PNG, JPG or SVG in one tap.</p>
+    </div>
+  </section>
+</main>
+<footer class="qz-footer">
+  <div class="qz-container qz-footer-grid">
+    <div>
+      <a href="./index.html" class="qz-logo"><img src="./assets/icons/favicon.svg" alt="" class="qz-logo-mark">QRZuno</a>
+      <p class="qz-tagline">Create. Customize. Scan.</p>
+    </div>
+    <div class="qz-footer-links">
+      <a href="./tools/url.html">QR Generator</a>
+      <a href="./qr-tools.html">QR Tools</a>
+      <a href="./about.html">About</a>
+      <a href="./faq.html">FAQ</a>
+      <a href="./privacy.html">Privacy</a>
+      <a href="./terms.html">Terms</a>
+      <a href="./contact.html">Contact</a>
+    </div>
+  </div>
+  <p class="qz-footer-bottom">© <span class="qz-year"></span> QRZuno. All rights reserved. No ads. No tracking. No login required.</p>
+</footer>
+<script src="./js/utils.js"></script>
+<script src="./js/history.js"></script>
+<script src="./js/favorites.js"></script>
+<script src="./js/download.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="./js/tools-data.js"></script>
+<script src="./js/qr-engine.js"></script>
+<script src="./js/app.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  let currentType = "url";
+  const wrap = document.getElementById("qz-quick-gen");
+  function mount(type) {
+    currentType = type;
+    document.querySelectorAll(".qz-quick-type").forEach(b => b.classList.toggle("active", b.dataset.type === type));
+    wrap.innerHTML = '<div id="qz-quick-root"></div>';
+    qzInitGenerator("qz-quick-root", type);
+  }
+  document.querySelectorAll(".qz-quick-type").forEach(b => b.addEventListener("click", () => mount(b.dataset.type)));
+  mount("url");
+
+  // hero live preview
+  try {
+    const matrix = qrzunoBuildMatrix("https://qrzuno.example.com", "M");
+    qrzunoDrawToCanvas(document.getElementById("qz-hero-canvas"), matrix, { size: 220, fg: "#7c3aed", fgTo: "#06b6d4", pattern: "rounded" });
+  } catch (e) {}
+});
+</script>
+</body>
+</html>

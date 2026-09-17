@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>QR Code Generator | QRZuno</title>
+<meta name="description" content="Generate any type of QR code — social, apps, events and files — free, ad-free and client-side with QRZuno.">
+<link rel="canonical" href="https://qrzuno.example.com/tools/generator.html">
+<meta property="og:title" content="QR Code Generator | QRZuno">
+<meta property="og:description" content="Generate any type of QR code — social, apps, events and files — free, ad-free and client-side with QRZuno.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="QRZuno">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b0f1e">
+<link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./assets/icons/favicon.svg">
+<link rel="manifest" href="./manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/main.css">
+<link rel="stylesheet" href="./css/responsive.css">
+<link rel="stylesheet" href="./css/animations.css">
+
+</head>
+<body>
+<div class="qz-bg-scene" aria-hidden="true">
+  <div class="qz-blob qz-blob-1"></div>
+  <div class="qz-blob qz-blob-2"></div>
+  <div class="qz-blob qz-blob-3"></div>
+</div>
+<header class="qz-header">
+  <div class="qz-container qz-header-inner">
+    <a href="../index.html" class="qz-logo" aria-label="QRZuno home">
+      <img src="../assets/icons/favicon.svg" alt="" class="qz-logo-mark">
+      QRZuno
+    </a>
+    <nav class="qz-nav" aria-label="Primary">
+      <a href="../index.html">Home</a>
+      <a href="../tools/url.html">QR Generator</a>
+      <a href="../qr-tools.html">QR Tools</a>
+      <a href="../about.html">About</a>
+      <a href="../faq.html">FAQ</a>
+    </nav>
+    <div class="qz-header-actions">
+      <a href="../tools/url.html" class="qz-btn qz-btn-primary qz-btn-sm">Create QR</a>
+      <button class="qz-hamburger" aria-label="Open menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+<nav class="qz-mobile-menu" aria-label="Mobile">
+  <a href="../index.html">Home</a>
+  <a href="../tools/url.html">QR Generator</a>
+  <a href="../qr-tools.html">QR Tools</a>
+  <a href="../about.html">About</a>
+  <a href="../faq.html">FAQ</a>
+  <a href="../history.html">History</a>
+  <a href="../contact.html">Contact</a>
+</nav>
+
+<main id="main">
+  <section class="qz-section" style="padding-top:44px;">
+    <div class="qz-container">
+      <div class="qz-section-head" style="max-width:720px;">
+        <span class="qz-eyebrow">QR Tools</span>
+        <h1 id="qz-generic-title">QR Code Generator</h1>
+        <p id="qz-generic-sub">Pick a type below, fill in the details, and download instantly.</p>
+      </div>
+      <div class="qz-chip-row" id="qz-generic-picker"></div>
+      <div id="qz-gen-root"></div>
+    </div>
+  </section>
+</main>
+<footer class="qz-footer">
+  <div class="qz-container qz-footer-grid">
+    <div>
+      <a href="../index.html" class="qz-logo"><img src="../assets/icons/favicon.svg" alt="" class="qz-logo-mark">QRZuno</a>
+      <p class="qz-tagline">Create. Customize. Scan.</p>
+    </div>
+    <div class="qz-footer-links">
+      <a href="../tools/url.html">QR Generator</a>
+      <a href="../qr-tools.html">QR Tools</a>
+      <a href="../about.html">About</a>
+      <a href="../faq.html">FAQ</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../terms.html">Terms</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+  </div>
+  <p class="qz-footer-bottom">© <span class="qz-year"></span> QRZuno. All rights reserved. No ads. No tracking. No login required.</p>
+</footer>
+<script src="../js/utils.js"></script>
+<script src="../js/history.js"></script>
+<script src="../js/favorites.js"></script>
+<script src="../js/download.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="../js/tools-data.js"></script>
+<script src="../js/qr-engine.js"></script>
+<script src="../js/app.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(location.search);
+  let type = params.get("type");
+  if (!type || !QRZUNO_TOOLS[type]) type = "instagram";
+
+  const picker = document.getElementById("qz-generic-picker");
+  const groups = {};
+  Object.entries(QRZUNO_TOOLS).forEach(([k, t]) => { (groups[t.category] = groups[t.category] || []).push(k); });
+  Object.entries(groups).forEach(([cat, keys]) => {
+    keys.forEach(k => {
+      const btn = document.createElement("button");
+      btn.type = "button"; btn.className = "qz-chip" + (k === type ? " active" : "");
+      btn.textContent = QRZUNO_TOOLS[k].icon + " " + QRZUNO_TOOLS[k].label.replace(" QR", "");
+      btn.addEventListener("click", () => {
+        const url = new URL(location.href); url.searchParams.set("type", k);
+        history.replaceState(null, "", url); mount(k);
+      });
+      picker.appendChild(btn);
+    });
+  });
+
+  function mount(k) {
+    type = k;
+    picker.querySelectorAll(".qz-chip").forEach((b, i) => {});
+    Array.from(picker.children).forEach(b => b.classList.toggle("active", b.textContent.includes(QRZUNO_TOOLS[k].label.replace(" QR", ""))));
+    document.getElementById("qz-generic-title").textContent = QRZUNO_TOOLS[k].label;
+    document.title = QRZUNO_TOOLS[k].label + " | QRZuno";
+    document.getElementById("qz-generic-sub").textContent = QRZUNO_TOOLS[k].desc;
+    document.getElementById("qz-gen-root").innerHTML = "";
+    qzInitGenerator("qz-gen-root", k);
+  }
+  mount(type);
+});
+</script>
+</body>
+</html>
