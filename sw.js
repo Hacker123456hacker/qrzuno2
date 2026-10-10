@@ -2,7 +2,7 @@
    Caches the app shell so basic QR generation keeps working offline
    after the first visit. Bump CACHE_NAME when you change core files. */
 
-const CACHE_NAME = "qrzuno-v2";
+const CACHE_NAME = "qrzuno-v3";
 const CORE_ASSETS = [
   "./index.html",
   "./qr-tools.html",
