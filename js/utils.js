@@ -54,7 +54,9 @@ function qzInitChrome() {
   document.querySelectorAll(".qz-year").forEach(el => el.textContent = new Date().getFullYear());
   // register service worker
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js").catch(() => {});
+    const manifest = document.querySelector('link[rel="manifest"]');
+    const swUrl = manifest ? new URL("sw.js", manifest.href) : new URL("../sw.js", location.href);
+    navigator.serviceWorker.register(swUrl.href).catch(() => {});
   }
 }
 
