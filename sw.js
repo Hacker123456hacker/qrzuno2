@@ -28,6 +28,7 @@ const CORE_ASSETS = [
   "./css/responsive.css",
   "./css/animations.css",
   "./js/app.js",
+  "./js/qrcode.js",
   "./js/qr-engine.js",
   "./js/tools-data.js",
   "./js/utils.js",
