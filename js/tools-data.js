@@ -133,11 +133,11 @@ const QRZUNO_TOOLS = {
         d.website ? `URL:${d.website.trim()}` : "",
         d.address ? `ADR:;;${esc(d.address)};;;;` : "",
         "END:VCARD"
-      ].filter(Boolean).join("\\r\\n");
+      ].filter(Boolean).join("\r\n");
     },
     validate: (d) => {
       if (!d.first || !d.first.trim()) return "Please enter a first name.";
-      if (d.email && !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(d.email)) return "Please enter a valid email address.";
+      if (d.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) return "Please enter a valid email address.";
       if (d.website) {
         try { const u = new URL(d.website); if (!["http:", "https:"].includes(u.protocol)) return "Website must start with http:// or https://."; }
         catch { return "Please enter a valid website URL."; }
