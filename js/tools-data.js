@@ -13,8 +13,10 @@ const QRZUNO_TOOLS = {
     ],
     build: (d) => d.url.trim(),
     validate: (d) => {
-      try { new URL(d.url.trim()); return null; }
-      catch { return "Please enter a valid URL."; }
+      try {
+        const parsed = new URL(d.url.trim());
+        return ["http:", "https:"].includes(parsed.protocol) ? null : "Please use an http:// or https:// website URL.";
+      } catch { return "Please enter a valid URL."; }
     }
   },
   text: {
@@ -114,19 +116,34 @@ const QRZUNO_TOOLS = {
       { key: "website", label: "Website", type: "url" },
       { key: "address", label: "Address", type: "text" }
     ],
-    build: (d) => [
-      "BEGIN:VCARD", "VERSION:3.0",
-      `N:${d.last || ""};${d.first || ""};;;`,
-      `FN:${(d.first || "") + " " + (d.last || "")}`.trim(),
-      d.org ? `ORG:${d.org}` : "",
-      d.title ? `TITLE:${d.title}` : "",
-      d.phone ? `TEL:${d.phone}` : "",
-      d.email ? `EMAIL:${d.email}` : "",
-      d.website ? `URL:${d.website}` : "",
-      d.address ? `ADR:;;${d.address};;;;` : "",
-      "END:VCARD"
-    ].filter(Boolean).join("\n"),
-    validate: (d) => (!d.first || !d.first.trim()) ? "Please enter a first name." : null
+    build: (d) => {
+      const esc = (value) => String(value || "")
+        .replace(/\\/g, "\\\\")
+        .replace(/\r?\n/g, "\\n")
+        .replace(/([,;])/g, "\\$1");
+      const fullName = [d.first, d.last].filter(Boolean).join(" ").trim();
+      return [
+        "BEGIN:VCARD", "VERSION:3.0",
+        `N:${esc(d.last)};${esc(d.first)};;;`,
+        `FN:${esc(fullName)}`,
+        d.org ? `ORG:${esc(d.org)}` : "",
+        d.title ? `TITLE:${esc(d.title)}` : "",
+        d.phone ? `TEL:${String(d.phone).replace(/[^0-9+(). -]/g, "")}` : "",
+        d.email ? `EMAIL:${esc(d.email.trim())}` : "",
+        d.website ? `URL:${d.website.trim()}` : "",
+        d.address ? `ADR:;;${esc(d.address)};;;;` : "",
+        "END:VCARD"
+      ].filter(Boolean).join("\\r\\n");
+    },
+    validate: (d) => {
+      if (!d.first || !d.first.trim()) return "Please enter a first name.";
+      if (d.email && !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(d.email)) return "Please enter a valid email address.";
+      if (d.website) {
+        try { const u = new URL(d.website); if (!["http:", "https:"].includes(u.protocol)) return "Website must start with http:// or https://."; }
+        catch { return "Please enter a valid website URL."; }
+      }
+      return null;
+    }
   },
   location: {
     label: "Location QR",
